@@ -161,7 +161,8 @@ h1 {
         font-size: 1rem;
     }
     .guess {
-        width: 7rem;
+        width: 13rem;
         height: 3rem;
+        font-size: 2rem;
     }
 }
