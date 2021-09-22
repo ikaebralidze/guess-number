@@ -16,20 +16,32 @@ let number = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highscores = 0;
 
-document.querySelector(".guess").textContent = number;
+// doc functions
+const message = function(sms) {
+    document.querySelector(".message").textContent = sms;
+};
+
+const scores = function(score) {
+    document.querySelector(".score").textContent = score;
+};
+
+const againStyle = function(text, style, body) {
+    document.querySelector(".number").textContent = text;
+
+    document.querySelector(".number").style.width = style;
+    document.querySelector("body").style.backgroundColor = body;
+};
+
 document.querySelector(".check").addEventListener("click", function() {
     const guess = Number(document.querySelector(".guess").value);
 
     // guess is false bcs we inverted to true with "!"
     if (!guess) {
-        document.querySelector(".message").textContent = "No number!";
+        message("No number!");
         //player wins!
     } else if (guess === number) {
-        document.querySelector(".number").textContent = number;
-
-        document.querySelector(".message").textContent = "corect Number !! ";
-        document.querySelector("body").style.backgroundColor = "#60b347";
-        document.querySelector(".number").style.width = "30rem";
+        againStyle(number, "30rem", "#60b347");
+        message("corect Number !! ");
 
         if (score > highscores) {
             highscores = score;
@@ -39,43 +51,48 @@ document.querySelector(".check").addEventListener("click", function() {
             console.log(highscores);
         }
 
-        // too high
-    } else if (guess > number) {
+        // vrong
+    } else if (guess !== number) {
         if (score > 1) {
-            document.querySelector(".message").textContent = "Too High ! ";
+            message(guess > number ? "Too High ! " : "Too low ! ");
             score--;
-            document.querySelector(".score").textContent = score;
+            scores(score);
         } else {
-            document.querySelector(".message").textContent = "YOU LOST ";
-            document.querySelector(".score").textContent = 0;
-        }
-
-        //too low
-    } else if (guess < number) {
-        if (score > 1) {
-            document.querySelector(".message").textContent = "Too low ! ";
-            score--;
-            document.querySelector(".score").textContent = score;
-        } else {
-            document.querySelector(".message").textContent = "YOU LOST ";
-            document.querySelector(".score").textContent = 0;
+            message("YOU LOST ");
+            scores(0);
         }
     }
+    // too high
+    //  else if (guess > number) {
+    //     if (score > 1) {
+    //         document.querySelector(".message").textContent = "Too High ! ";
+    //         score--;
+    //         document.querySelector(".score").textContent = score;
+    //     } else {
+    //         document.querySelector(".message").textContent = "YOU LOST ";
+    //         document.querySelector(".score").textContent = 0;
+    //     }
+
+    //     // too low
+    // } else if (guess < number) {
+    //     if (score > 1) {
+    //         document.querySelector(".message").textContent = "Too low ! ";
+    //         score--;
+    //         document.querySelector(".score").textContent = score;
+    //     } else {
+    //         document.querySelector(".message").textContent = "YOU LOST ";
+    //         document.querySelector(".score").textContent = 0;
+    //     }
+    // }
 });
 
 document.querySelector(".again").addEventListener("click", function() {
     score = 20;
     number = Math.trunc(Math.random() * 20) + 1;
 
-    document.querySelector(".message").textContent = "Start guessing...";
-
-    document.querySelector(".score").textContent = score;
-
-    document.querySelector(".number").textContent = number;
-
-    document.querySelector(".number").style.width = "15rem";
-
-    document.querySelector("body").style.backgroundColor = "#222";
+    message("Start guessing...");
+    scores(score);
+    againStyle("?", "15rem", "#222");
 
     document.querySelector(".guess").value = "";
 });
