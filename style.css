@@ -2,11 +2,11 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: inherit;
+    box-sizing: border-box;
 }
 
 html {
-    font-size: 62.5%;
+    font-size: 50%;
     box-sizing: border-box;
 }
 
@@ -73,7 +73,7 @@ h1 {
 }
 
 .between {
-    font-size: 1.4rem;
+    font-size: 2rem;
     position: absolute;
     top: 2rem;
     right: 2rem;
@@ -83,6 +83,7 @@ h1 {
     position: absolute;
     top: 2rem;
     left: 2rem;
+    width: 15rem;
 }
 
 .guess {
@@ -104,7 +105,7 @@ h1 {
     color: #222;
     font-size: 2rem;
     font-family: inherit;
-    padding: 2rem 3rem;
+    padding: 2rem 1rem;
     cursor: pointer;
 }
 
@@ -119,4 +120,48 @@ h1 {
 
 .label-score {
     margin-bottom: 2rem;
+}
+
+
+/* mobile classes */
+
+@media only screen and (max-width: 600px) {
+    p {
+        font-size: 1.5rem;
+        height: 1.5rem;
+    }
+    h1 {
+        font-size: 2rem;
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        top: 52%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .number {
+        background: #eee;
+        color: #333;
+        font-size: 3rem;
+        width: 15rem;
+        padding: 3rem 0rem;
+        text-align: center;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 50%);
+    }
+    .again {
+        width: 10%;
+    }
+    .btn {
+        font-size: 1rem;
+    }
+    .between {
+        font-size: 1rem;
+    }
+    .guess {
+        width: 7rem;
+        height: 3rem;
+    }
 }

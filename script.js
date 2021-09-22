@@ -1,16 +1,6 @@
 "use strict";
 
 // DOM
-/*
-console.log(document.querySelector(".message").textContent);
-document.querySelector(".message").textContent = "corect ";
-
-document.querySelector(".number").textContent = 13;
-document.querySelector(".score").textContent = 12;
-// get value from element
-document.querySelector(".guess").value = 23;
-console.log(document.querySelector(".guess").value);
-*/
 
 let number = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
@@ -32,7 +22,25 @@ const againStyle = function(text, style, body) {
     document.querySelector("body").style.backgroundColor = body;
 };
 
-document.querySelector(".check").addEventListener("click", function() {
+// const displayWindowSize = function() {
+//     let w = document.documentElement.clientHeight;
+//     let h = document.documentElement.clientWidth;
+//     console.log(w, h);
+//     if (h < 600) {
+//         document.querySelector("h1").classList.add("guess-mobile");
+//         document
+//             .querySelector(".number")
+//             .classList.replace("number", "number-mobile");
+//         document.querySelector(".btn").style.fontSize = "1rem";
+//         document.querySelector(".check").style.fontSize = "1rem";
+//         document.querySelector(".guess").style.width = "15rem";
+//         document.querySelector(".guess").style.height = "8rem";
+//     }
+// };
+
+// displayWindowSize();
+
+const checkbtn = function() {
     const guess = Number(document.querySelector(".guess").value);
 
     // guess is false bcs we inverted to true with "!"
@@ -62,29 +70,15 @@ document.querySelector(".check").addEventListener("click", function() {
             scores(0);
         }
     }
-    // too high
-    //  else if (guess > number) {
-    //     if (score > 1) {
-    //         document.querySelector(".message").textContent = "Too High ! ";
-    //         score--;
-    //         document.querySelector(".score").textContent = score;
-    //     } else {
-    //         document.querySelector(".message").textContent = "YOU LOST ";
-    //         document.querySelector(".score").textContent = 0;
-    //     }
+};
 
-    //     // too low
-    // } else if (guess < number) {
-    //     if (score > 1) {
-    //         document.querySelector(".message").textContent = "Too low ! ";
-    //         score--;
-    //         document.querySelector(".score").textContent = score;
-    //     } else {
-    //         document.querySelector(".message").textContent = "YOU LOST ";
-    //         document.querySelector(".score").textContent = 0;
-    //     }
-    // }
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        checkbtn();
+    }
 });
+
+document.querySelector(".check").addEventListener("click", checkbtn);
 
 document.querySelector(".again").addEventListener("click", function() {
     score = 20;
